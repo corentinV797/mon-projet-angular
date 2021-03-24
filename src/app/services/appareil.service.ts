@@ -1,5 +1,9 @@
+import { Subject } from 'rxjs';
+
 export class AppareilService {
-  appareils = [
+  appareilsSubject = new Subject<any[]>();
+  
+  private appareils = [
     {
       id: 1,
       name: 'Machine à laver',
@@ -44,5 +48,9 @@ export class AppareilService {
       }
     );
     return appareil;
+  }
+
+  emitAppareilSubject() {
+    this.appareilsSubject.next(this.appareils.slice());
   }
 }
